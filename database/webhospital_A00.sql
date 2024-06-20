@@ -34,6 +34,26 @@ CREATE TABLE IF NOT EXISTS tbl_status(
     descricao VARCHAR(20)
 );
 
+CREATE TABLE IF NOT EXISTS tbl_funcionarios(
+    id_funcionario INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(30),
+    sobrenome VARCHAR(30),
+    id_cargo INT,
+    id_status INT,
+    CONSTRAINT fk_id_cargo FOREIGN KEY (id_cargo) REFERENCES tbl_cargos(id_cargo),
+    CONSTRAINT fk_id_status FOREIGN KEY (id_status) REFERENCES tbl_status(id_status)
+);
+
+
+CREATE TABLE IF NOT EXISTS tbl_consultas(
+    id_consulta  INT AUTO_INCREMENT PRIMARY KEY,
+    prontuario_id INT,
+    funcionario_id INT,
+    CONSTRAINT fk_prontuario_id FOREIGN KEY (prontuario_id) REFERENCES tbl_prontuarios(id_prontuario),
+    CONSTRAINT fk_funcionario_id FOREIGN KEY (funcionario_id) REFERENCES tbl_funcionarios(id_funcionario),
+    detalhes VARCHAR(255)
+);
+
 
 CREATE TABLE IF NOT EXISTS tbl_procedimentos_exame(
     id_procedimentos_exame INT AUTO_INCREMENT PRIMARY KEY,
@@ -45,3 +65,4 @@ CREATE TABLE IF NOT EXISTS tbl_tipos_procedimentos(
     id_tipos_procedimento INT AUTO_INCREMENT PRIMARY KEY,
     descricao_procedimento VARCHAR(50) 
 );
+

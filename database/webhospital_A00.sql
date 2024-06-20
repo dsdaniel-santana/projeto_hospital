@@ -66,3 +66,16 @@ CREATE TABLE IF NOT EXISTS tbl_tipos_procedimentos(
     descricao_procedimento VARCHAR(50) 
 );
 
+CREATE TABLE IF NOT EXISTS tbl_exames (
+    id_exame INT AUTO_INCREMENT PRIMARY KEY,
+    prontuarioId INT,
+    funcionario_solicitante INT,
+    procedimentos_id INT,
+    CONSTRAINT fk_prontuarioId FOREIGN KEY (prontuarioId) REFERENCES tbl_prontuarios(id_prontuario),
+    CONSTRAINT fk_funcionario_solicitante FOREIGN KEY (funcionario_solicitante) REFERENCES tbl_funcionarios(id_funcionario),
+    CONSTRAINT fk_procedimentos_id FOREIGN KEY (procedimentos_id) REFERENCES tbl_tipos_procedimentos(id_tipos_procedimento),
+    data_solicitacao DATETIME
+
+
+);
+

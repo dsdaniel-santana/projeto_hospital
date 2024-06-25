@@ -6,8 +6,11 @@ include_once("model/modelStatus.php");
 $controllerStatus = new controllerStatus();
 $lista = $controllerStatus->listarStatus();
 
-if($lista){
-    $msg = array ("status"=> $lista);
+if($lista) {
+    $msg = array("status" => $lista);
+    echo json_encode($msg);
+} else {
+    $msg = array("status" => []);
+    echo json_encode($msg);
 }
-
 ?>

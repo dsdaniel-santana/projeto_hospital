@@ -1,21 +1,32 @@
 <?php
+
 class modelStatus{
+
     public function listarStatus(){
-        try{
+        try {
             $pdo = Database::conexao();
             $consulta = $pdo->query("SELECT * FROM tbl_status");
-            $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
-            return $resultado;
-        } catch(PDOException $e){
+            $lista = $consulta->fetchAll(PDO::FETCH_ASSOC);
+            return $lista;
+        } catch (PDOException $e) {
             return false;
         }
     }
 
+    public function cadastrarStatus($descricao) {
+        try {
+
+            $descricao_filtro = filter_var($descricao, FILTER_SANITIZE_STRING);
+
+            $pdo = Database::conexao();
+            $cadastrar = $pdo->prepare("INSERT INTO tbl_status(descricao) VALUES (:descricao)");
+            $cadastrar->bindParam(":descricao", $descricao_filtro);
+
+            $cadastrar->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }
-
-//CREATE TABLE IF NOT EXISTS tbl_status(
-//    id_status INT AUTO_INCREMENT PRIMARY KEY,
-//    descricao VARCHAR(20)
-//);
-
-?>

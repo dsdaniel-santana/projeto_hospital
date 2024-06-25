@@ -24,6 +24,8 @@ class Database{
         if(!self::$db){
             new Database();
         }
+
+        return self::$db;
     }
 }
 ?>

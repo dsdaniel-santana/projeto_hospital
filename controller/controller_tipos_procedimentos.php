@@ -22,7 +22,7 @@ class controllerProcedimentos{
     public function atualizarProcedimentos($descricao_procedimento, $id_tipos_procedimento){
         try {
             $modelProcedimentos = new modelProcedimentos();
-            return $modelProcedimentos->atualizarProcedimento($descricao_procedimento, $id_tipos_procedimento);
+            return $modelProcedimentos->atualizarProcedimentos($descricao_procedimento, $id_tipos_procedimento);
         } catch (PDOException $e) {
             return false;
             

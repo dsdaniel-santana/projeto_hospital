@@ -25,7 +25,7 @@ class modelProcedimentos {
         }
     }
 
-    public function atualizarProcedimento($descricao_procedimento, $id_tipos_procedimento) {
+    public function atualizarProcedimentos($descricao_procedimento, $id_tipos_procedimento) {
         try {
             $pdo = Database::conexao();
             $atualizar = $pdo->prepare("UPDATE tbl_tipos_procedimentos SET descricao_procedimento=:descricao_procedimento WHERE id_tipos_procedimento=:id_tipos_procedimento");

@@ -7,7 +7,12 @@ $controllerProcedimentos = new controllerProcedimentos();
 $resultado = $controllerProcedimentos->listarProcedimentos();
 
 if($resultado){
+    $msg = array("status"=> $resultado);
+    echo json_encode($msg);
     
+} else {
+    $msg = array("Erro:"=> "Erro ao consultar dados");
+    echo json_encode($msg);
 }
 
 

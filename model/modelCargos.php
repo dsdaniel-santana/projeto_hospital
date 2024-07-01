@@ -1,6 +1,6 @@
 <?php
 class modelCargos{
-    public function listarCargo(){
+    public function listarCargos(){
         try {
             $pdo = Database::conexao();
             $consulta = $pdo->query("SELECT * FROM tbl_cargos");
@@ -48,6 +48,9 @@ class modelCargos{
 //    id_cargo INT AUTO_INCREMENT PRIMARY KEY,
 //    descricao_cargo VARCHAR(50)
 //);
+//public function listarCargo
+//public function cadastrarCargo
+//public function atualizarCargo
 
 
 ?>

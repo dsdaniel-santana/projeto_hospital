@@ -1,5 +1,6 @@
 <?php
 class modelCargos{
+    
     public function listarCargos(){
         try {
             $pdo = Database::conexao();
@@ -11,13 +12,15 @@ class modelCargos{
         }
     }
 
-    public function cadastrarCargo(){
+    public function cadastrarCargo($descricao_cargo){
         try {
             $pdo = Database::conexao();
             $inserir = $pdo->prepare("INSERT INTO tbl_cargos (descricao_cargo) VALUES(:descricao_cargo)");
 
             $inserir->bindParam(':descricao_cargo', $descricao_cargo);
             $inserir->execute();
+
+            return true;
 
         } catch (PDOException $e) {
             return false;
@@ -28,7 +31,7 @@ class modelCargos{
         try {
             $pdo = Database::conexao();
             $atualizar = $pdo->prepare("UPDATE tbl_cargos
-            SET descricao_cargo = :descricao_cargo,
+            SET descricao_cargo = :descricao_cargo
             WHERE id_cargo = :id_cargo");
 
             $atualizar->bindParam(":descricao_cargo", $descricao_cargo);
@@ -38,6 +41,8 @@ class modelCargos{
             return true;
 
         } catch (PDOException $e) {
+            
+            return false;
             //throw $th;
         }        
     }

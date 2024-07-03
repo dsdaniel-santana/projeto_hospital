@@ -1,9 +1,10 @@
 <?php
 
-class contorllerCargos{
+class controllerCargos{
 
     public function listarCargos(){
         try {
+            
             $modelCargos =  new modelCargos();
             return $modelCargos->listarCargos();
         } catch (PDOException $e) {
@@ -15,7 +16,7 @@ class contorllerCargos{
     public function cadastrarCargo($descricao_cargo){
         try {
             $modelCargos =  new modelCargos();
-            return $modelCargos->listarCargos($descricao_cargo);
+            return $modelCargos->cadastrarCargo($descricao_cargo);
         } catch (PDOException $e) {
             return false;
         }

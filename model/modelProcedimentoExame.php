@@ -14,25 +14,33 @@ class modelProcedimentosExames{
         }
     }
 
-    public function cadastrarExames(){
+    public function cadastrarProcedimentoExame($id_tipos_procedimento) {
         try {
             $pdo = Database::conexao();
-            
-
-
-
+            $cadastrar = $pdo->prepare("INSERT INTO tbl_procedimentos_exame (id_tipos_procedimento) VALUES (:id_tipos_procedimento)");
+            $cadastrar->bindParam(":id_tipos_procedimento", $id_tipos_procedimento);
+    
+            $cadastrar->execute();
+            return true;
         } catch (PDOException $e) {
             return false;
         }
     }
+    
 
-    public function atualizarExames(){
+    public function atualizarProcedimentoExame($id_procedimentos_exame, $id_tipos_procedimento) {
         try {
             $pdo = Database::conexao();
+            $atualizar = $pdo->prepare("UPDATE tbl_procedimentos_exame SET id_tipos_procedimento=:id_tipos_procedimento WHERE id_procedimentos_exame=:id_procedimentos_exame");
+            $atualizar->bindParam(":id_procedimentos_exame", $id_procedimentos_exame);
+            $atualizar->bindParam(":id_tipos_procedimento", $id_tipos_procedimento);
+            $atualizar->execute();
+            return true;
         } catch (PDOException $e) {
             return false;
         }
     }
+    
 }
 
 
